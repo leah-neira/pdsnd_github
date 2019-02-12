@@ -2,9 +2,11 @@ import time
 import pandas as pd
 import numpy as np
 
+# dictonary for files
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
+
 
 def get_filters():
     """
@@ -205,6 +207,7 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
+        # ask if user wants to see raw data and restart program
         raw_data = input('\n Would you like to see 5 rows of raw data? y or n: ').lower()
         if raw_data != 'n':
             i = 0
@@ -221,4 +224,4 @@ def main():
 
 
 if __name__ == "__main__":
-	main()    
+	main()
