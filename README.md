@@ -4,7 +4,6 @@
 
 ### Description:
 This project is the requirement for the Version Control section of the Programming for Data Science Nanodegree. It is to ensure understanding of the concepts of git, the version control tool, and GitHub, the version control host
-Describe what your project is about and what it does
 
 ### Files used:
 Project_bikeshare.py
@@ -14,8 +13,10 @@ new_york_city.csv
 Project 3_Git-Commands-Documentation
 .gitignore
 
-
 ### Credits:
 The forked Udacity GitHub, pdsnd_github
 The repos used as examples in the Version Control lessons
+
+### Due Date:
+3/5/2019
 
