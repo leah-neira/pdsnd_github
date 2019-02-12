@@ -2,11 +2,9 @@ import time
 import pandas as pd
 import numpy as np
 
-# dictonary for files
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
-
 
 def get_filters():
     """
@@ -115,8 +113,7 @@ def time_stats(df):
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     popular_hour = df['hour'].mode()[0]
-    hour_format = (popular_hour, %I %p)
-    print('The most common starting hour is: ', hour_format)
+    print('The most common starting hour is: ', popular_hour)
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -163,7 +160,7 @@ def trip_duration_stats(df):
     print('-'*40)
 
 
-def user_stats(df):
+def user_stats(df, city):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
@@ -174,24 +171,22 @@ def user_stats(df):
     print("User Types: \n", user_types)
 
     # TO DO: Display counts of gender
-    city, month, day = get_filters()
-
     if city != 'washington':
-       gender_types = pd.value_counts(df['Gender'])
-       print("Gender Types: \n", gender_types)
+        gender_types = pd.value_counts(df['Gender'])
+        print("\n Gender Types: \n", gender_types)
     else:
-       print("No Gender data available for Washington.")
+        print("\n No Gender data available for Washington.")
 
     # TO DO: Display earliest, most recent, and most common year of birth
     if city != 'washington':
         birth_min = int(df['Birth Year'].min())
-        print('The earliest Birth Year is: ', birth_min)
+        print('\n The earliest Birth Year is: ', birth_min)
         birth_max = int(df['Birth Year'].max())
-        print('The most recent Birth Year is: ', birth_max)
+        print('\n The most recent Birth Year is: ', birth_max)
         birth_mode = int(df['Birth Year'].mode())
-        print('The most common Birth Year is: ', birth_mode)
+        print('\n The most common Birth Year is: ', birth_mode)
     else:
-        print("No Birth Year data available for Washington.")
+        print("\n No Birth Year data available for Washington.")
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -205,23 +200,25 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-        user_stats(df)
+        user_stats(df, city)
 
-        # ask if user wants to see raw data and restart program
         raw_data = input('\n Would you like to see 5 rows of raw data? y or n: ').lower()
         if raw_data != 'n':
             i = 0
             while True:
                 print(df.iloc[i:i+5])
                 i += 5
-                more_rows = input('Would you like to see more data? y or n: ').lower()
-                if more_rows != 'n':
-                    break
+                more_rows = input('\nWould you like to see more data? y or n: ').lower()
+                if more_rows != 'y':
+                    restart = input('\nWould you like to restart? Enter y or n: ').lower()
+                    if restart != 'y':
+                        break
         else:
-            restart = input('\nWould you like to restart? Enter yes or no.\n')
-            if restart.lower() != 'yes':
+            restart = input('\nWould you like to restart? Enter y or n: ').lower()
+            if restart != 'y':
                 break
-
+            else:
+                continue
 
 if __name__ == "__main__":
 	main()
