@@ -38,7 +38,7 @@ def get_filters():
                 break
             else:
                 print("That\'s not a valid month. Try again: ")
-         except:
+         except KeyError:
             print("That\'s not a valid month. Try again: ")
 
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
@@ -50,7 +50,7 @@ def get_filters():
                 break
              else:
                 print("That\'s not a valid day. Try again: ")
-          except:
+          except KeyError:
              print("That\'s not a valid day. Try again: ")
 
     print('-'*40)
@@ -208,13 +208,14 @@ def main():
             while True:
                 print(df.iloc[i:i+5])
                 i += 5
-                more_rows = input('\nWould you like to see more data? y or n: ').lower()
+                more_rows = input('\n Would you like to see more data? y or n: ').lower()
                 if more_rows != 'y':
-                    restart = input('\nWould you like to restart? Enter y or n: ').lower()
+                    restart = input('\n Would you like to restart? Enter y or n: ').lower()
                     if restart != 'y':
                         break
+
         else:
-            restart = input('\nWould you like to restart? Enter y or n: ').lower()
+            restart = input('\n Would you like to restart? Enter y or n: ').lower()
             if restart != 'y':
                 break
             else:
